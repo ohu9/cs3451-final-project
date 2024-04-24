@@ -195,10 +195,24 @@ assignments/a9/CMakeFiles/a9.dir/__/__/src/mikktspace.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/a9.dir/__/__/src/mikktspace.cpp.s"
 	cd /Users/oliviahu/3451/cs3451-final-project/build/assignments/a9 && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/oliviahu/3451/cs3451-final-project/src/mikktspace.cpp -o CMakeFiles/a9.dir/__/__/src/mikktspace.cpp.s
 
+assignments/a9/CMakeFiles/a9.dir/main_copy.cpp.o: assignments/a9/CMakeFiles/a9.dir/flags.make
+assignments/a9/CMakeFiles/a9.dir/main_copy.cpp.o: /Users/oliviahu/3451/cs3451-final-project/assignments/a9/main\ copy.cpp
+assignments/a9/CMakeFiles/a9.dir/main_copy.cpp.o: assignments/a9/CMakeFiles/a9.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/oliviahu/3451/cs3451-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object assignments/a9/CMakeFiles/a9.dir/main_copy.cpp.o"
+	cd /Users/oliviahu/3451/cs3451-final-project/build/assignments/a9 && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT assignments/a9/CMakeFiles/a9.dir/main_copy.cpp.o -MF CMakeFiles/a9.dir/main_copy.cpp.o.d -o CMakeFiles/a9.dir/main_copy.cpp.o -c "/Users/oliviahu/3451/cs3451-final-project/assignments/a9/main copy.cpp"
+
+assignments/a9/CMakeFiles/a9.dir/main_copy.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/a9.dir/main_copy.cpp.i"
+	cd /Users/oliviahu/3451/cs3451-final-project/build/assignments/a9 && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/oliviahu/3451/cs3451-final-project/assignments/a9/main copy.cpp" > CMakeFiles/a9.dir/main_copy.cpp.i
+
+assignments/a9/CMakeFiles/a9.dir/main_copy.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/a9.dir/main_copy.cpp.s"
+	cd /Users/oliviahu/3451/cs3451-final-project/build/assignments/a9 && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/oliviahu/3451/cs3451-final-project/assignments/a9/main copy.cpp" -o CMakeFiles/a9.dir/main_copy.cpp.s
+
 assignments/a9/CMakeFiles/a9.dir/main.cpp.o: assignments/a9/CMakeFiles/a9.dir/flags.make
 assignments/a9/CMakeFiles/a9.dir/main.cpp.o: /Users/oliviahu/3451/cs3451-final-project/assignments/a9/main.cpp
 assignments/a9/CMakeFiles/a9.dir/main.cpp.o: assignments/a9/CMakeFiles/a9.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/oliviahu/3451/cs3451-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object assignments/a9/CMakeFiles/a9.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/oliviahu/3451/cs3451-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object assignments/a9/CMakeFiles/a9.dir/main.cpp.o"
 	cd /Users/oliviahu/3451/cs3451-final-project/build/assignments/a9 && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT assignments/a9/CMakeFiles/a9.dir/main.cpp.o -MF CMakeFiles/a9.dir/main.cpp.o.d -o CMakeFiles/a9.dir/main.cpp.o -c /Users/oliviahu/3451/cs3451-final-project/assignments/a9/main.cpp
 
 assignments/a9/CMakeFiles/a9.dir/main.cpp.i: cmake_force
@@ -212,7 +226,7 @@ assignments/a9/CMakeFiles/a9.dir/main.cpp.s: cmake_force
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/TinyObjLoader.cpp.o: assignments/a9/CMakeFiles/a9.dir/flags.make
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/TinyObjLoader.cpp.o: /Users/oliviahu/3451/cs3451-final-project/ext/tiny_obj_loader/TinyObjLoader.cpp
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/TinyObjLoader.cpp.o: assignments/a9/CMakeFiles/a9.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/oliviahu/3451/cs3451-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/TinyObjLoader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/oliviahu/3451/cs3451-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/TinyObjLoader.cpp.o"
 	cd /Users/oliviahu/3451/cs3451-final-project/build/assignments/a9 && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/TinyObjLoader.cpp.o -MF CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/TinyObjLoader.cpp.o.d -o CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/TinyObjLoader.cpp.o -c /Users/oliviahu/3451/cs3451-final-project/ext/tiny_obj_loader/TinyObjLoader.cpp
 
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/TinyObjLoader.cpp.i: cmake_force
@@ -226,7 +240,7 @@ assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/TinyObjLoader.cpp.s: 
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/tiny_obj_loader.cpp.o: assignments/a9/CMakeFiles/a9.dir/flags.make
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/tiny_obj_loader.cpp.o: /Users/oliviahu/3451/cs3451-final-project/ext/tiny_obj_loader/tiny_obj_loader.cpp
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/tiny_obj_loader.cpp.o: assignments/a9/CMakeFiles/a9.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/oliviahu/3451/cs3451-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/tiny_obj_loader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/oliviahu/3451/cs3451-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/tiny_obj_loader.cpp.o"
 	cd /Users/oliviahu/3451/cs3451-final-project/build/assignments/a9 && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/tiny_obj_loader.cpp.o -MF CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/tiny_obj_loader.cpp.o.d -o CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/tiny_obj_loader.cpp.o -c /Users/oliviahu/3451/cs3451-final-project/ext/tiny_obj_loader/tiny_obj_loader.cpp
 
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/tiny_obj_loader.cpp.i: cmake_force
@@ -240,7 +254,7 @@ assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/tiny_obj_loader.cpp.s
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/stb/StbImage.cpp.o: assignments/a9/CMakeFiles/a9.dir/flags.make
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/stb/StbImage.cpp.o: /Users/oliviahu/3451/cs3451-final-project/ext/stb/StbImage.cpp
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/stb/StbImage.cpp.o: assignments/a9/CMakeFiles/a9.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/oliviahu/3451/cs3451-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object assignments/a9/CMakeFiles/a9.dir/__/__/ext/stb/StbImage.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/oliviahu/3451/cs3451-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object assignments/a9/CMakeFiles/a9.dir/__/__/ext/stb/StbImage.cpp.o"
 	cd /Users/oliviahu/3451/cs3451-final-project/build/assignments/a9 && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT assignments/a9/CMakeFiles/a9.dir/__/__/ext/stb/StbImage.cpp.o -MF CMakeFiles/a9.dir/__/__/ext/stb/StbImage.cpp.o.d -o CMakeFiles/a9.dir/__/__/ext/stb/StbImage.cpp.o -c /Users/oliviahu/3451/cs3451-final-project/ext/stb/StbImage.cpp
 
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/stb/StbImage.cpp.i: cmake_force
@@ -254,7 +268,7 @@ assignments/a9/CMakeFiles/a9.dir/__/__/ext/stb/StbImage.cpp.s: cmake_force
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_gltf/TinyGltfLoader.cpp.o: assignments/a9/CMakeFiles/a9.dir/flags.make
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_gltf/TinyGltfLoader.cpp.o: /Users/oliviahu/3451/cs3451-final-project/ext/tiny_gltf/TinyGltfLoader.cpp
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_gltf/TinyGltfLoader.cpp.o: assignments/a9/CMakeFiles/a9.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/oliviahu/3451/cs3451-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_gltf/TinyGltfLoader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/oliviahu/3451/cs3451-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_gltf/TinyGltfLoader.cpp.o"
 	cd /Users/oliviahu/3451/cs3451-final-project/build/assignments/a9 && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_gltf/TinyGltfLoader.cpp.o -MF CMakeFiles/a9.dir/__/__/ext/tiny_gltf/TinyGltfLoader.cpp.o.d -o CMakeFiles/a9.dir/__/__/ext/tiny_gltf/TinyGltfLoader.cpp.o -c /Users/oliviahu/3451/cs3451-final-project/ext/tiny_gltf/TinyGltfLoader.cpp
 
 assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_gltf/TinyGltfLoader.cpp.i: cmake_force
@@ -276,6 +290,7 @@ a9_OBJECTS = \
 "CMakeFiles/a9.dir/__/__/src/OpenGLWindow.cpp.o" \
 "CMakeFiles/a9.dir/__/__/src/glad.cpp.o" \
 "CMakeFiles/a9.dir/__/__/src/mikktspace.cpp.o" \
+"CMakeFiles/a9.dir/main_copy.cpp.o" \
 "CMakeFiles/a9.dir/main.cpp.o" \
 "CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/TinyObjLoader.cpp.o" \
 "CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/tiny_obj_loader.cpp.o" \
@@ -294,6 +309,7 @@ assignments/a9/a9: assignments/a9/CMakeFiles/a9.dir/__/__/src/OpenGLViewer.cpp.o
 assignments/a9/a9: assignments/a9/CMakeFiles/a9.dir/__/__/src/OpenGLWindow.cpp.o
 assignments/a9/a9: assignments/a9/CMakeFiles/a9.dir/__/__/src/glad.cpp.o
 assignments/a9/a9: assignments/a9/CMakeFiles/a9.dir/__/__/src/mikktspace.cpp.o
+assignments/a9/a9: assignments/a9/CMakeFiles/a9.dir/main_copy.cpp.o
 assignments/a9/a9: assignments/a9/CMakeFiles/a9.dir/main.cpp.o
 assignments/a9/a9: assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/TinyObjLoader.cpp.o
 assignments/a9/a9: assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_obj_loader/tiny_obj_loader.cpp.o
@@ -301,7 +317,7 @@ assignments/a9/a9: assignments/a9/CMakeFiles/a9.dir/__/__/ext/stb/StbImage.cpp.o
 assignments/a9/a9: assignments/a9/CMakeFiles/a9.dir/__/__/ext/tiny_gltf/TinyGltfLoader.cpp.o
 assignments/a9/a9: assignments/a9/CMakeFiles/a9.dir/build.make
 assignments/a9/a9: assignments/a9/CMakeFiles/a9.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/oliviahu/3451/cs3451-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable a9"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/oliviahu/3451/cs3451-final-project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX executable a9"
 	cd /Users/oliviahu/3451/cs3451-final-project/build/assignments/a9 && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/a9.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

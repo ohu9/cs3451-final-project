@@ -466,6 +466,30 @@ main.cpp.s:
 	cd /Users/oliviahu/3451/cs3451-final-project/build && $(MAKE) $(MAKESILENT) -f assignments/a9/CMakeFiles/a9.dir/build.make assignments/a9/CMakeFiles/a9.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+main_copy.o: main_copy.cpp.o
+.PHONY : main_copy.o
+
+# target to build an object file
+main_copy.cpp.o:
+	cd /Users/oliviahu/3451/cs3451-final-project/build && $(MAKE) $(MAKESILENT) -f assignments/a9/CMakeFiles/a9.dir/build.make assignments/a9/CMakeFiles/a9.dir/main_copy.cpp.o
+.PHONY : main_copy.cpp.o
+
+main_copy.i: main_copy.cpp.i
+.PHONY : main_copy.i
+
+# target to preprocess a source file
+main_copy.cpp.i:
+	cd /Users/oliviahu/3451/cs3451-final-project/build && $(MAKE) $(MAKESILENT) -f assignments/a9/CMakeFiles/a9.dir/build.make assignments/a9/CMakeFiles/a9.dir/main_copy.cpp.i
+.PHONY : main_copy.cpp.i
+
+main_copy.s: main_copy.cpp.s
+.PHONY : main_copy.s
+
+# target to generate assembly for a file
+main_copy.cpp.s:
+	cd /Users/oliviahu/3451/cs3451-final-project/build && $(MAKE) $(MAKESILENT) -f assignments/a9/CMakeFiles/a9.dir/build.make assignments/a9/CMakeFiles/a9.dir/main_copy.cpp.s
+.PHONY : main_copy.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -517,6 +541,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... main_copy.o"
+	@echo "... main_copy.i"
+	@echo "... main_copy.s"
 .PHONY : help
 
 

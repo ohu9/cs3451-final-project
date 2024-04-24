@@ -8,7 +8,9 @@ out vec4 fragColor;
 
 uniform sampler2D bufferTexture;
 uniform sampler2D floor_color;
-uniform sampler2D ball_color;
+uniform sampler2D buzz_color;
+uniform sampler2D cola_color;
+uniform sampler2D brick_color;
 
 #define M_PI 3.1415925585
 #define Epsilon 1e-6
@@ -128,7 +130,7 @@ const Hit noHit = Hit(
 
 void initScene() 
 {
-    camera = Camera(vec3(0, 20,70), vec3(5, 0, 0), vec3(0, 4, -.1), vec3(-2.5, -1.2, -2.5));
+    camera = Camera(vec3(40, 25, 30), vec3(5, 0, 0), vec3(0, 5, 0), vec3(-2.9, -2.0, -1));
 
     // Floor Material 
     materials[0].ka = vec3(0.1);
@@ -137,22 +139,24 @@ void initScene()
     materials[0].shininess = 100.0;
     materials[0].kr = 0.5 * materials[0].ks;
 
-    materials[1].ka = vec3(0.01);
-    materials[1].kd = vec3(0.4, 0.4, 0.4);
-    materials[1].ks = vec3(1.5);
-    materials[1].shininess = 98;
+    //// Sphere 0 Material
+    materials[1].ka = vec3(0.1);
+    // materials[1].kd = vec3(0.8, 0.2, 0.2);
+    materials[1].kd = vec3(0.5);
+    materials[1].ks = vec3(0.9);
+    materials[1].shininess = 128;
     materials[1].kr = 0.5 * materials[1].ks;
 
-    materials[2].ka = vec3(0.01);
-    materials[2].kd = vec3(0.2, 0.2, 0.2);
-    materials[2].ks = vec3(1.5);
-    materials[2].shininess = 98;
+    materials[2].ka = vec3(0.05, 0.05, 0.05);
+    materials[2].kd = vec3(0.5, 0.5, 0.5);
+    materials[2].ks = vec3(0.9);
+    materials[2].shininess = 128;
     materials[2].kr = 0.5 * materials[2].ks;
 
-    materials[3].ka = vec3(0.01);
-    materials[3].kd = vec3(0.15, 0.15, 0.15);
-    materials[3].ks = vec3(1.4);
-    materials[3].shininess = 98;
+    materials[3].ka = vec3(0.05);
+    materials[3].kd = vec3(0.5, 0.5, 0.5);
+    materials[3].ks = vec3(0.4);
+    materials[3].shininess = 128;
     materials[3].kr = 0.5 * materials[3].ks;
 
     lights[0] = Light(vec3(-1, 3, 0.5), 
@@ -162,14 +166,12 @@ void initScene()
     lights[1] = Light(vec3(0.5, 2, 1), 
                             /*Ia*/ vec3(0.1, 0.1, 0.1), 
                             /*Id*/ vec3(0.9, 0.9, 0.9), 
-                            /*Is*/ vec3(10.5, 10.5, 10.5));
+                            /*Is*/ vec3(0.5, 0.5, 0.5));
     planes[0] = Plane(vec3(0, 1, 0), vec3(0, 0, 0), 0);
 
-    spheres[0] = Sphere(vec3(0, 0.7, -.2), 0.7, 1);
-    spheres[1] = Sphere(vec3(0, 1.9, -.2), 0.5, 2);
-    spheres[2] = Sphere(vec3(0, 2.7, -.2), 0.3, 3);
-    // spheres[1] = Sphere(vec3(1.1, 0.4, -0.8), 0.4, 2);
-    // spheres[2] = Sphere(vec3(-1.2, 0.5, -0.8), 0.5, 3);
+    spheres[0] = Sphere(vec3(0, 0.6, -1), 0.6, 1);
+    spheres[1] = Sphere(vec3(1.1, 0.4, -0.8), 0.4, 2);
+    spheres[2] = Sphere(vec3(-1.2, 0.5, -0.8), 0.5, 3);
 }
 
 /////////////////////////////////////////////////////
@@ -217,26 +219,27 @@ Hit hitPlane(const Ray r, const Plane pl)
 Hit hitSphere(const Ray r, const Sphere s) 
 {
     Hit hit = noHit;
+	
+    /* your implementation starts */
+    float A = dot(r.dir, r.dir);
+    float B = 2*dot((r.ori-s.ori),r.dir);
+    float C = dot(r.ori, r.ori)+dot(s.ori, s.ori)-2*dot(r.ori, s.ori)-(s.r*s.r);
+    float disc = B*B-4*A*C;
+    if(disc<0) {
+        return noHit;
+    }
+    float t = (-B-sqrt(disc))/(2*A);
+    if(t < 0) {
+        return noHit;
+    }
+    vec3 hitP = r.ori+r.dir*t;
+    vec3 norm = hitP-s.ori;
 
-    // 1. calculate a, b, c using r and s
-    float a = dot(r.dir,r.dir);
-    float b = 2*(dot(r.ori,r.dir) - dot(s.ori,r.dir));
-    float c = dot(r.ori,r.ori) + dot(s.ori,s.ori) - 2*dot(r.ori,s.ori) - dot(s.r,s.r);
-
-    // 3. calculate determinnate det and return noHit if det < 0
-    float det = pow(b,2) - 4*a*c;
-    if (det < 0) return hit;
-
-    // 3. calculate t using a,b,c and return noHit if t < 0
-    float t = (-1*b - pow(det, .5)) / (2*a);
-    if (t < 0) return hit;
+    hit = Hit(t, hitP, norm, s.matId);
     
-    // 4. calculate intersection point p and normal n using t
-    vec3 p = r.ori + t*r.dir;
-    vec3 n = normalize(p - s.ori);
-    
-    hit = Hit(t, p, n, s.matId);
 
+	/* your implementation ends */
+    
 	return hit;
 }
 
@@ -279,21 +282,21 @@ vec3 shadingPhong(Light light, int matId, vec3 e, vec3 p, vec3 s, vec3 n)
     vec3 color = matId == 0 ? vec3(0.2, 0, 0) : vec3(0, 0, 0.3);
 
     vec3 ka = materials[matId].ka;
-    vec3 kd = sampleDiffuse(matId, p);//materials[matId].kd;
+    vec3 kd = materials[matId].kd;
     vec3 ks = materials[matId].ks;
     float shininess = materials[matId].shininess;
     
-	vec3 l = normalize(s - p);
-    float diff = max(dot(l,n), 0.f);
-    
-    vec3 v = normalize(e - p);
-    vec3 r = -1*reflect(l, n);
-    float spec = pow(max(dot(v,r), 0.f), shininess);
-
-    color = ka*light.Ia + kd*light.Id*diff + ks*light.Is*spec;
-    // color = ka*light.Ia + sampleDiffuse(matId, p) + ks*light.Is*spec;
-    
-	return color;
+    /* your implementation starts */
+    vec3 l = (s-p)/length(s-p);
+    n/=length(n);
+    vec3 r = reflect(-1*l, n);
+    vec3 v = (e-p)/length(e-p);
+    // vec3 phong = ka*light.Ia+kd*light.Id*max(0, dot(l, n))+ks*light.Is*pow(max(0, dot(v,r)), shininess);
+    vec3 diffuse = sampleDiffuse(matId, p);
+    vec3 phong = ka*light.Ia+diffuse*light.Id*max(0, dot(l, n))+ks*light.Is*pow(max(0, dot(v,r)), shininess);
+    return phong;
+	
+	/* your implementation ends */
 }
 
 /////////////////////////////////////////////////////
@@ -311,14 +314,43 @@ vec3 sampleDiffuse(int matId, vec3 p)
     if(matId == 0) {		
 		vec2 uv = vec2(p.x, p.z) / 5.0;     /* uv texture on the ground */
 
-        color = texture(floor_color, uv).xyz * mat_color;
+        /* your implementation starts */
+        color = (mat_color*texture(floor_color, uv).xyz);
+        
+        
+		/* your implementation ends */
+    } else if (matId == 1) {
+        float phi = asin(p.z);
+        float lambda = atan(p.y, p.x);
+
+        float u = (lambda + M_PI) / (2.0 * M_PI);
+        float v = (phi + M_PI / 2.0) / M_PI;
+        vec2 uv = vec2(u,v);
+        color = mat_color*texture(cola_color, uv).xyz;
+
+    }
+    else if (matId == 2) {
+        float phi = asin(p.z);
+        float lambda = atan(p.y, p.x);
+
+        float u = (lambda + M_PI) / (2.0 * M_PI);
+        float v = (phi + M_PI / 2.0) / M_PI;
+        vec2 uv = vec2(u,v);
+        color = mat_color*texture(buzz_color, uv).xyz;
+
+    }
+    else if (matId == 3) {
+        float phi = asin(p.z);
+        float lambda = atan(p.y, p.x);
+        
+        float u = (lambda + M_PI) / (2.0 * M_PI);
+        float v = (phi + M_PI / 2.0) / M_PI;
+        vec2 uv = vec2(u,v);
+        color = mat_color*texture(brick_color, uv).xyz;
+
     }
 
-    /* apply texture for spheres */
-    if(matId >= 1 && matId <= 3) {
-        vec2 uv = vec2(p.y, p.z) / 100.0;
-        color = texture(ball_color, uv).xyz * mat_color;
-    }
+    /* no texture for the spheres */
     
     return color;
 }
@@ -340,9 +372,16 @@ bool isShadowed(Light light, Hit h)
 	float t_max = length(toLight);                  /* length of toLight */
 	vec3 dir = normalize(toLight);                  /* direction of toLight */
 	
-    Ray shadowRay = Ray(intersect + Epsilon, toLight);
-	float t = findHit(shadowRay).t;
-    return t > 0 && t < t_max;
+    /* your implementation starts */
+    Ray r = Ray(intersect+Epsilon*dir, dir);
+    Hit hit = findHit(r);
+    if(hit.t>0 && hit.t < t_max) {
+        shadowed = true;
+    }
+	
+
+    
+	/* your implementation ends */
     
 	return shadowed;
 }
@@ -429,11 +468,15 @@ void main()
         vec3 intersect = hit.p;
         vec3 normal = hit.normal;
         vec3 incoming_dir = recursiveRay.dir;
-        // vec3 reflected_dir = vec3(0);           /* calculate the reflected dir */
+        vec3 reflected_dir = vec3(0);           /* calculate the reflected dir */
 
 		/* your implementation starts */
-        vec3 reflected_dir = incoming_dir - 2*dot(incoming_dir, normal)*normal;
-        recursiveRay = Ray(intersect, reflected_dir);
+        normal = normalize(normal);
+        // reflect(-1*incoming_dir, normal);
+        reflected_dir = incoming_dir-2*dot(incoming_dir, normal)*normal;
+        recursiveRay.dir = reflected_dir;
+        recursiveRay.ori = intersect;
+        
 		/* your implementation ends */
     }
 	

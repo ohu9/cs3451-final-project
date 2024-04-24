@@ -13,14 +13,14 @@
 #include "OpenGLViewer.h"
 #include "OpenGLWindow.h"
 
-class RayTracingDriver : public OpenGLViewer 
+class RayTracingDriver : public OpenGLViewer
 {
     OpenGLScreenCover *screen_cover = nullptr;
     clock_t startTime;
     int frame;
 
 public:
-    virtual void Initialize() 
+    virtual void Initialize()
     {
         draw_bk = false;
         draw_axes = false;
@@ -31,7 +31,7 @@ public:
     }
 
     //// Initialize the screen covering mesh and shaders
-    virtual void Initialize_Data() 
+    virtual void Initialize_Data()
     {
         OpenGLShaderLibrary::Instance()->Add_Shader_From_File("common.vert", "ray_tracing.frag", "rt");
         OpenGLShaderLibrary::Instance()->Add_Shader_From_File("common.vert", "basic_frag.frag", "screen");
@@ -41,21 +41,28 @@ public:
         // Add texture
         OpenGLTextureLibrary::Instance()->Add_Texture_From_File("floor.jpg", "floor_color");
         screen_cover->Add_Texture("floor_color", OpenGLTextureLibrary::Get_Texture("floor_color"));
-        OpenGLTextureLibrary::Instance()->Add_Texture_From_File("silver.jpg", "ball_color");
-        screen_cover->Add_Texture("ball_color", OpenGLTextureLibrary::Get_Texture("ball_color"));
-        
+
+        OpenGLTextureLibrary::Instance()->Add_Texture_From_File("buzz_color.jpg", "buzz_color");
+        screen_cover->Add_Texture("buzz_color", OpenGLTextureLibrary::Get_Texture("buzz_color"));
+
+        OpenGLTextureLibrary::Instance()->Add_Texture_From_File("cola_can_tex.jpg", "cola_color");
+        screen_cover->Add_Texture("cola_color", OpenGLTextureLibrary::Get_Texture("cola_color"));
+
+        OpenGLTextureLibrary::Instance()->Add_Texture_From_File("bricks.jpg", "brick_color");
+        screen_cover->Add_Texture("brick_color", OpenGLTextureLibrary::Get_Texture("brick_color"));
+
         screen_cover->use_tex = true;
         screen_cover->Set_Data_Refreshed();
         screen_cover->Initialize();
         screen_cover->Add_Buffer();
+		screen_cover->Add_Shader_Program(OpenGLShaderLibrary::Get_Shader("screen"));
         screen_cover->Add_Shader_Program(OpenGLShaderLibrary::Get_Shader("rt"));
-        screen_cover->Add_Shader_Program(OpenGLShaderLibrary::Get_Shader("screen"));
         // Temporal Anti-aliasing
         Toggle_Play();
     }
 
     //// Update the uniformed variables used in shader
-    void Uniform_Update() 
+    void Uniform_Update()
     {
         // screen_cover->setResolution((float)Win_Width(), (float)Win_Height());
         screen_cover->setTime(GLfloat(clock() - startTime) / CLOCKS_PER_SEC);
@@ -63,20 +70,20 @@ public:
     }
 
     //// Go to next frame
-    virtual void Toggle_Next_Frame() 
+    virtual void Toggle_Next_Frame()
     {
         Uniform_Update();
         OpenGLViewer::Toggle_Next_Frame();
     }
 
     ////Keyboard interaction
-    virtual void Initialize_Common_Callback_Keys() 
+    virtual void Initialize_Common_Callback_Keys()
     {
         OpenGLViewer::Initialize_Common_Callback_Keys();
         Bind_Callback_Key('r', &Keyboard_Event_R_Func, "Restart");
     }
 
-    virtual void Keyboard_Event_R() 
+    virtual void Keyboard_Event_R()
     {
         std::cout << "Restart" << std::endl;
         startTime = clock();
@@ -84,13 +91,13 @@ public:
     }
 
     Define_Function_Object(RayTracingDriver, Keyboard_Event_R);
-    virtual void Run() 
+    virtual void Run()
     {
         OpenGLViewer::Run();
     }
 };
 
-int main(int argc, char *argv[]) 
+int main(int argc, char *argv[])
 {
     RayTracingDriver driver;
     driver.Initialize();

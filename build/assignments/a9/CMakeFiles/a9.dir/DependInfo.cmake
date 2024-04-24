@@ -22,6 +22,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/oliviahu/3451/cs3451-final-project/src/glad.cpp" "assignments/a9/CMakeFiles/a9.dir/__/__/src/glad.cpp.o" "gcc" "assignments/a9/CMakeFiles/a9.dir/__/__/src/glad.cpp.o.d"
   "/Users/oliviahu/3451/cs3451-final-project/src/mikktspace.cpp" "assignments/a9/CMakeFiles/a9.dir/__/__/src/mikktspace.cpp.o" "gcc" "assignments/a9/CMakeFiles/a9.dir/__/__/src/mikktspace.cpp.o.d"
   "/Users/oliviahu/3451/cs3451-final-project/assignments/a9/main.cpp" "assignments/a9/CMakeFiles/a9.dir/main.cpp.o" "gcc" "assignments/a9/CMakeFiles/a9.dir/main.cpp.o.d"
+  "/Users/oliviahu/3451/cs3451-final-project/assignments/a9/main copy.cpp" "assignments/a9/CMakeFiles/a9.dir/main_copy.cpp.o" "gcc" "assignments/a9/CMakeFiles/a9.dir/main_copy.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

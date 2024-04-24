@@ -47,6 +47,6 @@ void main()
     // vec3 color = shading_texture_with_checkerboard();
     vec3 I = normalize(position.xyz - vtx_position);
     vec3 R = reflect(I, normalize(vtx_normal));
-    vec3 color = texture(skybox, vec3(R.x, -R.y, -R.z)).rgb;
+    vec3 color = vec3(.4,.4,.4);//texture(skybox, vec3(R.x, -R.y, -R.z)).rgb;
     frag_color = vec4(color, 1.0);
 }
