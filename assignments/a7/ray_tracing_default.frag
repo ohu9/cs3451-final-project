@@ -411,9 +411,9 @@ vec3 rayTrace(in Ray r, out Hit hit, vec2 uv)
     if(h.t > 0 && h.t < 1e8) {
         // shading
         for(int i = 0; i < areaLights.length(); i++) {
+            float intensity = intensityAt(areaLights[i], uv, h);
             for (int j = 0; j < areaLights[i].vsteps; j++) {
                 for (int k = 0; k < areaLights[i].usteps; k++) {
-                    float intensity = intensityAt(areaLights[i], uv, h);
                     vec3 e = camera.origin;
                     vec3 p = h.p;
                     vec3 s = pointOnLight(areaLights[i], j, k);

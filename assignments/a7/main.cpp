@@ -42,15 +42,6 @@ public:
         OpenGLTextureLibrary::Instance()->Add_Texture_From_File("floor.jpg", "floor_color");
         screen_cover->Add_Texture("floor_color", OpenGLTextureLibrary::Get_Texture("floor_color"));
 
-        OpenGLTextureLibrary::Instance()->Add_Texture_From_File("buzz_color.jpg", "buzz_color");
-        screen_cover->Add_Texture("buzz_color", OpenGLTextureLibrary::Get_Texture("buzz_color"));
-
-        OpenGLTextureLibrary::Instance()->Add_Texture_From_File("cola_can_tex.jpg", "cola_color");
-        screen_cover->Add_Texture("cola_color", OpenGLTextureLibrary::Get_Texture("cola_color"));
-
-        OpenGLTextureLibrary::Instance()->Add_Texture_From_File("bricks.jpg", "brick_color");
-        screen_cover->Add_Texture("brick_color", OpenGLTextureLibrary::Get_Texture("brick_color"));
-
         screen_cover->use_tex = true;
         screen_cover->Set_Data_Refreshed();
         screen_cover->Initialize();
