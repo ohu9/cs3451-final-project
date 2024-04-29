@@ -39,7 +39,7 @@ public:
         Set_Polygon_Mode(screen_cover, PolygonMode::Fill);
         Uniform_Update();
         // Add texture
-        OpenGLTextureLibrary::Instance()->Add_Texture_From_File("floor.jpg", "floor_color");
+        OpenGLTextureLibrary::Instance()->Add_Texture_From_File("checker.jpg", "floor_color");
         screen_cover->Add_Texture("floor_color", OpenGLTextureLibrary::Get_Texture("floor_color"));
 
         screen_cover->use_tex = true;

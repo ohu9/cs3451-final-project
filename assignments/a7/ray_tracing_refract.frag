@@ -144,16 +144,16 @@ void initScene()
     camera = Camera(vec3(0, 15, 50), vec3(5, 0, 0), vec3(0, 3, -3), vec3(-2.5, -1.5, -1));
 
     // Floor Material 
-    materials[0].ka = vec3(0.4);
-    materials[0].kd = vec3(1.5);
+    materials[0].ka = vec3(0.1);
+    materials[0].kd = vec3(1.0);
     materials[0].ks = vec3(0.6);
     materials[0].shininess = 90.0;
     materials[0].kr = 0.5 * materials[0].ks;
 
-    materials[1].ka = vec3(0.2);
-    materials[1].kd = vec3(1.5, 1.5, 1.5);
+    materials[1].ka = vec3(0.1);
+    materials[1].kd = vec3(1.0, 1.0, 1.0);
     materials[1].ks = vec3(0.8);
-    materials[1].shininess = 60;
+    materials[1].shininess = 20;
     materials[1].kr = 0.5 * materials[1].ks;
 
     materials[2].ka = vec3(0.1);
