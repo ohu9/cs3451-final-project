@@ -237,7 +237,7 @@ Hit hitPlane(const Ray r, const Plane pl)
 	return hit;
 }
 
-/////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 //// Step 2: Ray-sphere intersection
 //// In this function, you are asked to implement the ray-sphere intersection function
 //// Before starting your implementation, read the course slides and the implementation of the hitPlane() function
