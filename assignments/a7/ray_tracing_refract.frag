@@ -120,7 +120,7 @@ vec2 rand2(inout float seed)
 
 Camera camera;                          //// camera
 Light lights[2];                        //// two lights
-AreaLight areaLights[2];
+AreaLight areaLights[1];                //// two area lights
 Sphere spheres[3];                      //// three spheres
 Plane planes[1];                        //// one plane
 Material materials[4];                  //// four materials: 0 - ground, 1-3 - the three spheres
@@ -144,7 +144,7 @@ void initScene()
     camera = Camera(vec3(0, 15, 50), vec3(5, 0, 0), vec3(0, 3, -3), vec3(-2.5, -1.5, -1));
 
     // Floor Material 
-    materials[0].ka = vec3(0.2);
+    materials[0].ka = vec3(0.4);
     materials[0].kd = vec3(1.5);
     materials[0].ks = vec3(0.6);
     materials[0].shininess = 90.0;
@@ -153,7 +153,7 @@ void initScene()
     materials[1].ka = vec3(0.2);
     materials[1].kd = vec3(1.5, 1.5, 1.5);
     materials[1].ks = vec3(0.8);
-    materials[1].shininess = 90;
+    materials[1].shininess = 60;
     materials[1].kr = 0.5 * materials[1].ks;
 
     materials[2].ka = vec3(0.1);
@@ -177,22 +177,22 @@ void initScene()
                             /*Id*/ vec3(0.9, 0.9, 0.9), 
                             /*Is*/ vec3(0.5, 0.5, 0.5));
 
-    areaLights[0] = AreaLight(vec3(-5, 10, 40), 
-                            vec3(8,0,0),
-                            vec3(0,8,0),
-                            8,
-                            8,
-                            64,
+    areaLights[0] = AreaLight(vec3(-5, 5, 5), 
+                            /*uvec*/vec3(8,0,0),
+                            /*vvec*/vec3(0,8,0),
+                            /*usteps*/ 8,
+                            /*vsteps*/ 8,
+                            /*numCells*/ 64,
                             /*Ia*/ vec3(0.1, 0.1, 0.1), 
                             /*Id*/ vec3(1.0, 1.0, 1.0), 
                             /*Is*/ vec3(2.8, 2.8, 2.8));
 
-    // areaLights[1] = AreaLight(vec3(0.5, 2, 1), 
-    //                         vec3(8,0,0),
-    //                         vec3(0,8,0),
-    //                         8,
-    //                         8,
-    //                         64,
+    // areaLights[1] = AreaLight(vec3(-5, 15, 15), 
+    //                         /*uvec*/ vec3(8,0,0),
+    //                         /*vvec*/ vec3(0,8,0),
+    //                         /*usteps*/ 8,
+    //                         /*vsteps*/ 8,
+    //                         /*numCells*/ 64,
     //                         /*Ia*/ vec3(0.1, 0.1, 0.1), 
     //                         /*Id*/ vec3(1.0, 1.0, 1.0), 
     //                         /*Is*/ vec3(2.8, 2.8, 2.8));
@@ -315,8 +315,8 @@ vec3 shadingPhong(AreaLight light, int matId, vec3 e, vec3 p, Ray r, vec3 s, vec
     vec3 ka = materials[matId].ka;
     vec3 kd = sampleDiffuse(matId, p);//materials[matId].kd;
     if (matId == 1) {
-        p = hitPlane(r, planes[0]).p, n, 2.6;
-        kd = sampleDiffuse(matId, p);
+        p = hitPlane(r, planes[0]).p;
+        kd = sampleDiffuse(matId, refract(p, n, .8));
     }
     vec3 ks = materials[matId].ks;
     float shininess = materials[matId].shininess;
@@ -328,7 +328,7 @@ vec3 shadingPhong(AreaLight light, int matId, vec3 e, vec3 p, Ray r, vec3 s, vec
     vec3 refl = -1*reflect(l, n);
     float spec = pow(max(dot(v,refl), 0.f), shininess);
 
-    color = (ka*light.Ia + kd*light.Id*diff*intensity + ks*light.Is*spec*intensity)/64;
+    color = (ka*light.Ia + kd*light.Id*diff*intensity + ks*light.Is*spec*intensity)/(light.numCells);
     // color = ka*light.Ia + sampleDiffuse(matId, p) + ks*light.Is*spec;
     
 	return color;
