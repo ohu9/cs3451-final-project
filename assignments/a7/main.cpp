@@ -33,7 +33,7 @@ public:
     //// Initialize the screen covering mesh and shaders
     virtual void Initialize_Data()
     {
-        OpenGLShaderLibrary::Instance()->Add_Shader_From_File("common.vert", "ray_tracing_default.frag", "rt");
+        OpenGLShaderLibrary::Instance()->Add_Shader_From_File("common.vert", "ray_tracing_refract.frag", "rt");
         OpenGLShaderLibrary::Instance()->Add_Shader_From_File("common.vert", "basic_frag.frag", "screen");
         screen_cover = Add_Interactive_Object<OpenGLScreenCover>();
         Set_Polygon_Mode(screen_cover, PolygonMode::Fill);
