@@ -144,7 +144,7 @@ void initScene()
     camera = Camera(vec3(0, 15, 50), vec3(5, 0, 0), vec3(0, 3, -3), vec3(-2.5, -1.5, -1));
 
     // Floor Material 
-    materials[0].ka = vec3(0.1);
+    materials[0].ka = vec3(0.2);
     materials[0].kd = vec3(1.0);
     materials[0].ks = vec3(0.6);
     materials[0].shininess = 90.0;
@@ -152,8 +152,8 @@ void initScene()
 
     materials[1].ka = vec3(0.1);
     materials[1].kd = vec3(1.0, 1.0, 1.0);
-    materials[1].ks = vec3(0.8);
-    materials[1].shininess = 20;
+    materials[1].ks = vec3(1.);
+    materials[1].shininess = 120;
     materials[1].kr = 0.5 * materials[1].ks;
 
     materials[2].ka = vec3(0.1);
@@ -165,7 +165,7 @@ void initScene()
     materials[3].ka = vec3(0.2);
     materials[3].kd = vec3(0.2, 0.2, 0.9);
     materials[3].ks = vec3(0.8);
-    materials[3].shininess = 128;
+    materials[3].shininess = 98;
     materials[3].kr = 0.5 * materials[3].ks;
 
     lights[0] = Light(vec3(-1, 3, 0.5), 
@@ -177,15 +177,15 @@ void initScene()
                             /*Id*/ vec3(0.9, 0.9, 0.9), 
                             /*Is*/ vec3(0.5, 0.5, 0.5));
 
-    areaLights[0] = AreaLight(vec3(-5, 5, 5), 
-                            /*uvec*/vec3(8,0,0),
-                            /*vvec*/vec3(0,8,0),
+    areaLights[0] = AreaLight(vec3(-1, 10, 1), 
+                            /*uvec*/vec3(4,0,0),
+                            /*vvec*/vec3(0,4,0),
                             /*usteps*/ 8,
                             /*vsteps*/ 8,
                             /*numCells*/ 64,
                             /*Ia*/ vec3(0.1, 0.1, 0.1), 
                             /*Id*/ vec3(1.0, 1.0, 1.0), 
-                            /*Is*/ vec3(2.8, 2.8, 2.8));
+                            /*Is*/ vec3(2.5, 2.5, 2.5));
 
     // areaLights[1] = AreaLight(vec3(-5, 15, 15), 
     //                         /*uvec*/ vec3(8,0,0),
@@ -201,7 +201,7 @@ void initScene()
 
     spheres[0] = Sphere(vec3(0, .8, -1), .8, 1);
     spheres[1] = Sphere(vec3(1.1, 0.4, -0.8), 0.4, 1);
-    // spheres[2] = Sphere(vec3(-1.2, 0.5, -0.8), 0.5, 1);
+    spheres[2] = Sphere(vec3(-1.4, 0.5, -0.8), 0.5, 1);
 }
 
 /////////////////////////////////////////////////////
@@ -267,7 +267,7 @@ Hit hitSphere(const Ray r, const Sphere s)
     vec3 p = r.ori + t*r.dir;
     vec3 n = normalize(p - s.ori);
 
-    vec3 refracted = refract(p, n, .3);
+    // vec3 refracted = refract(p, n, 1.);
     
     hit = Hit(t, p, n, s.matId);
 
@@ -307,7 +307,7 @@ Hit findHit(Ray r)
 //// You are allowed to reuse the code you have implemented previously
 /////////////////////////////////////////////////////
 
-vec3 shadingPhong(AreaLight light, int matId, vec3 e, vec3 p, Ray r, vec3 s, vec3 n, float intensity) 
+vec3 shadingPhong(AreaLight light, int matId, vec3 e, vec3 p, vec3 s, vec3 n, float intensity) 
 {
 	//// default color: return dark red for the ground and dark blue for spheres
     vec3 color = matId == 0 ? vec3(0.2, 0, 0) : vec3(0, 0, 0.3);
@@ -315,16 +315,17 @@ vec3 shadingPhong(AreaLight light, int matId, vec3 e, vec3 p, Ray r, vec3 s, vec
     vec3 ka = materials[matId].ka;
     vec3 kd = sampleDiffuse(matId, p);//materials[matId].kd;
     if (matId == 1) {
-        p = hitPlane(r, planes[0]).p;
-        kd = sampleDiffuse(matId, refract(p, n, .8));
+        vec3 refractedRay = normalize(refract(p, n, .2));
+        vec3 refractedP = hitPlane(Ray(p+2*(vec3(0, .8, -1)-p), refractedRay),planes[0]).p;
+        kd = sampleDiffuse(matId, refractedP);
     }
     vec3 ks = materials[matId].ks;
     float shininess = materials[matId].shininess;
     
-	vec3 l = normalize(s - r.dir);
+	vec3 l = normalize(s - p);
     float diff = max(dot(l,n), 0.f);
     
-    vec3 v = normalize(e - r.dir);
+    vec3 v = normalize(e - p);
     vec3 refl = -1*reflect(l, n);
     float spec = pow(max(dot(v,refl), 0.f), shininess);
 
@@ -347,7 +348,7 @@ vec3 sampleDiffuse(int matId, vec3 p)
 
     /* apply texture for the ground */
     if(matId == 0 || matId == 1) {
-		vec2 uv = vec2(p.x, p.z) / 8.0;     /* uv texture on the ground */
+		vec2 uv = vec2(p.x, p.z*.5) / 5.0;     /* uv texture on the ground */
 
         /* your implementation starts */
         color = texture(floor_color, uv).xyz * mat_color;
@@ -435,7 +436,7 @@ vec3 rayTrace(in Ray r, out Hit hit, vec2 uv)
                     vec3 p = h.p;
                     vec3 s = pointOnLight(areaLights[i], j, k);
                     vec3 n = h.normal;
-                    col += shadingPhong(areaLights[i], h.matId, e, p, r, s, n, intensity);
+                    col += shadingPhong(areaLights[i], h.matId, e, p, s, n, intensity);
                 }
             }
         }   
@@ -450,7 +451,7 @@ vec3 rayTrace(in Ray r, out Hit hit, vec2 uv)
 
 /* your implementation starts */
 
-const int recursiveDepth = 1;
+const int recursiveDepth = 10;
 
 /* your implementation ends */
 
