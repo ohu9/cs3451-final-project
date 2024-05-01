@@ -307,16 +307,20 @@ Hit findHit(Ray r)
 //// You are allowed to reuse the code you have implemented previously
 /////////////////////////////////////////////////////
 
-vec3 shadingPhong(AreaLight light, int matId, vec3 e, vec3 p, vec3 s, vec3 n, float intensity) 
+vec3 shadingPhong(AreaLight light, int matId, vec3 e, vec3 p, Ray r, vec3 s, vec3 n, float intensity) 
 {
 	//// default color: return dark red for the ground and dark blue for spheres
     vec3 color = matId == 0 ? vec3(0.2, 0, 0) : vec3(0, 0, 0.3);
 
     vec3 ka = materials[matId].ka;
     vec3 kd = sampleDiffuse(matId, p);//materials[matId].kd;
+    // if (matId == 1) {
+    //     vec3 refractedRay = normalize(refract(p, n, .2));
+    //     vec3 refractedP = hitPlane(Ray(p+2*(vec3(0, .8, -1)-p), refractedRay),planes[0]).p;
+    //     kd = sampleDiffuse(matId, refractedP);
+    // }
     if (matId == 1) {
-        vec3 refractedRay = normalize(refract(p, n, .2));
-        vec3 refractedP = hitPlane(Ray(p+2*(vec3(0, .8, -1)-p), refractedRay),planes[0]).p;
+        vec3 refractedP = refract(p, n, .9);
         kd = sampleDiffuse(matId, refractedP);
     }
     vec3 ks = materials[matId].ks;
@@ -436,7 +440,7 @@ vec3 rayTrace(in Ray r, out Hit hit, vec2 uv)
                     vec3 p = h.p;
                     vec3 s = pointOnLight(areaLights[i], j, k);
                     vec3 n = h.normal;
-                    col += shadingPhong(areaLights[i], h.matId, e, p, s, n, intensity);
+                    col += shadingPhong(areaLights[i], h.matId, e, p, r, s, n, intensity);
                 }
             }
         }   
